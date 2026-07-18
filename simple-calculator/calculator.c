@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+/**
+ * main - simple calculator
+ *
+ * Return: 0
+ */
 int main(void)
 {
 	int choice;
@@ -28,6 +33,16 @@ int main(void)
 
 			printf("Result: %d\n", a + b);
 		}
+		else if (choice == 2)
+		{
+			printf("A: ");
+			scanf("%d", &a);
+
+			printf("B: ");
+			scanf("%d", &b);
+
+			printf("Result: %d\n", a - b);
+		}
 		else if (choice < 0 || choice > 4)
 		{
 			printf("Invalid choice\n");
@@ -36,7 +51,6 @@ int main(void)
 		{
 			printf("Bye!\n");
 		}
-
 	} while (choice != 0);
 
 	return (0);
