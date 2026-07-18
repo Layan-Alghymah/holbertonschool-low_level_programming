@@ -3,6 +3,8 @@
 int main(void)
 {
 	int choice;
+	int a;
+	int b;
 
 	printf("Simple Calculator\n");
 
@@ -16,7 +18,17 @@ int main(void)
 
 		scanf("%d", &choice);
 
-		if (choice < 0 || choice > 4)
+		if (choice == 1)
+		{
+			printf("A: ");
+			scanf("%d", &a);
+
+			printf("B: ");
+			scanf("%d", &b);
+
+			printf("Result: %d\n", a + b);
+		}
+		else if (choice < 0 || choice > 4)
 		{
 			printf("Invalid choice\n");
 		}
