@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 /**
- * create_array - Creates an array of chars, and initializes it 
+ * create_array - Creates an array of chars, and initializes it
  * @size : number of letters stored
  * @c : char to store
  */
@@ -22,7 +22,7 @@ char *create_array(unsigned int size, char c)
 	{
 		return (NULL);
 	}
-	for(i=0 ; i < size ; i++)
+	for (i = 0 ; i < size ; i++)
 	{
 		A[i] = c;
 	}
