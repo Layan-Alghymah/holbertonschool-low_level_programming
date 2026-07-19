@@ -50,4 +50,6 @@ char *str_concat(char *s1, char *s2)
 		length[len1 + j] = s2[len2 + j];
 	}
 	length[len1 + len2] = '\0';
+
+	return (length);
 }
