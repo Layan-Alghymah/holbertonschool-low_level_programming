@@ -3,8 +3,10 @@
 
 /**
  * create_array - Creates an array of chars, and initializes it
- * @size : number of letters stored
- * @c : char to store
+ * @size: number of letters stored
+ * @c: char to store
+ *
+ * Return: Pointer to the array, or NULL if allocation fails
  */
 char *create_array(unsigned int size, char c)
 {
