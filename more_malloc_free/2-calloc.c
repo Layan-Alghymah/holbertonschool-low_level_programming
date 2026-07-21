@@ -8,7 +8,7 @@
  *
  * Return: pointer to allocated memory, or NULL on failure
  */
-void *_calloc(unsigned int nmemb, unsigned int size);
+void *_calloc(unsigned int nmemb, unsigned int size)
 {
 	unsigned int i, total;
 	char *ptr;
