@@ -1,175 +1,57 @@
 # Crash Report
 
-
-
 ## Program
 
+`crash_example.c`
 
+## What happened?
 
-crash_example.c
+The program crashes with a segmentation fault.
 
+## Root Cause
 
+`main()` calls:
 
----
-
-
-
-## Crash Description
-
-
-
-Describe what happened.
-
-
-
----
-
-
-
-## Invalid Memory Access
-
-
-
-What memory access caused the crash?
-
-
-
-Read?
-
-
-
-Write?
-
-
-
-Stack?
-
-
-
-Heap?
-
-
-
----
-
-
-
-## Root Cause Analysis
-
-
-
-
-
-
-
+```c
+nums = allocate_numbers(n);
 ```
 
-pointer created
+Since `n` is `0`, `allocate_numbers()` returns `NULL`:
 
-↓
-
-
-
-memory freed
-
-
-
-↓
-
-
-
-pointer still used
-
-
-
-↓
-
-
-
-invalid read
-
-
-
-↓
-
-
-
-segmentation fault
-
+```c
+if (n <= 0)
+    return NULL;
 ```
 
+After that, the program executes:
 
+```c
+nums[0] = 42;
+```
 
----
+Because `nums` is `NULL`, this line tries to write through a null pointer, which causes the crash.
 
+## Memory Type
 
+- `nums` is a pointer stored on the **stack**.
+- No heap memory is allocated because `malloc()` is never called when `n <= 0`.
 
-## Undefined Behavior Category
+## Causal Chain
 
+```text
+n = 0
+↓
+allocate_numbers() returns NULL
+↓
+nums = NULL
+↓
+nums[0] = 42
+↓
+Invalid memory write
+↓
+Segmentation fault
+```
 
+## AI Review
 
-مثلاً:
-
-
-
-- Use-after-free
-
-
-
-أو
-
-
-
-- Invalid write
-
-
-
----
-
-
-
-## AI Suggestions
-
-
-
-### Suggestion 1
-
-
-
-...
-
-
-
-Correct?
-
-
-
-Yes / No
-
-
-
-Why?
-
-
-
----
-
-
-
-### Suggestion 2
-
-
-
-...
-
-
-
-Correct?
-
-
-
-...
-
-
-
----
+AI suggested using a positive value for `n`. This would avoid this specific crash, but it is not enough because memory allocation can still fail. The returned pointer should always be checked before it is used.
